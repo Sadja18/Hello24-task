@@ -128,22 +128,6 @@ class _ParentScreenState extends State<ParentScreen> {
                         left: 16.0,
                       ),
                       child: const Text(
-                        "language widget",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const Divider(
-                      thickness: 2.0,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                      ),
-                      child: const Text(
                         "phone numebers widget",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -207,7 +191,7 @@ class _ParentScreenState extends State<ParentScreen> {
               ),
               Table(
                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                columnWidths: const {0: FractionColumnWidth(0.20), 1: FractionColumnWidth(0.80)},
+                columnWidths: const {0: FractionColumnWidth(0.15), 1: FractionColumnWidth(0.80)},
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const TableRow(
@@ -232,7 +216,21 @@ class _ParentScreenState extends State<ParentScreen> {
                       ),
                       LanguageWidget(),
                     ],
-                  )
+                  ),
+                  const TableRow(children: [
+                    TableCell(
+                      child: Divider(
+                        thickness: 1.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TableCell(
+                      child: Divider(
+                        thickness: 1.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ])
                 ],
               ),
             ],
