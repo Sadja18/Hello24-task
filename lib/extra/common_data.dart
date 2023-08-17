@@ -87,3 +87,5 @@ const List<Widget> alignmentIcons = [
   Icon(Icons.align_horizontal_right_sharp),
   Icon(Icons.align_horizontal_center_sharp)
 ];
+
+enum radioSelection { rtlOn, rtlOff }
