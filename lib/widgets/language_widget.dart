@@ -55,7 +55,7 @@ class _LanguageRow1State extends State<LanguageRow1> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              "Gmail Display Language",
+              "Gmail Display Language:",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,

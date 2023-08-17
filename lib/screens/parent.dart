@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hmail_settings_general_clone/widgets/language_widget.dart';
+import 'package:hmail_settings_general_clone/widgets/phone_number_widget.dart';
 
 class ParentScreen extends StatefulWidget {
   const ParentScreen({super.key});
@@ -204,7 +205,7 @@ class _ParentScreenState extends State<ParentScreen> {
                           ),
                           child: SizedBox(
                             child: Text(
-                              "Langauge:",
+                              "Language:",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -230,7 +231,46 @@ class _ParentScreenState extends State<ParentScreen> {
                         color: Colors.black,
                       ),
                     ),
-                  ])
+                  ]),
+                  const TableRow(
+                    children: [
+                      TableCell(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                            left: 18.0,
+                          ),
+                          child: SizedBox(
+                            child: Text(
+                              "Phone numbers:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      PhoneNumberWidget(),
+                    ],
+                  ),
+                  const TableRow(
+                    children: [
+                      TableCell(
+                        child: Divider(
+                          thickness: 1.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TableCell(
+                        child: Divider(
+                          thickness: 1.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ],
