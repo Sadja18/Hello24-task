@@ -263,7 +263,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
           ListTile(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 0,
-              vertical: 1.0,
+              vertical: 0.0,
             ),
             title: const SizedBox(
               child: Text(
@@ -275,6 +275,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
               ),
             ),
             leading: Radio<RadioSelection>(
+              visualDensity: VisualDensity.compact,
               activeColor: Colors.blue.shade600,
               value: RadioSelection.rtlOff,
               groupValue: _primaryRadioButtonValue,
@@ -288,7 +289,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
           ListTile(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 0,
-              vertical: 1.0,
+              vertical: 0.0,
             ),
             title: const SizedBox(
               child: Text(
@@ -300,6 +301,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
               ),
             ),
             leading: Radio<RadioSelection>(
+              visualDensity: VisualDensity.compact,
               activeColor: Colors.blue.shade600,
               value: RadioSelection.rtlOn,
               groupValue: _primaryRadioButtonValue,
