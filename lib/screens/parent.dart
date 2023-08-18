@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hmail_settings_general_clone/widgets/language_widget.dart';
 import 'package:hmail_settings_general_clone/widgets/phone_number_widget.dart';
+import 'package:hmail_settings_general_clone/widgets/text_style_widget.dart';
 
 class ParentScreen extends StatefulWidget {
   const ParentScreen({super.key});
@@ -130,22 +131,6 @@ class _ParentScreenState extends State<ParentScreen> {
                         left: 16.0,
                       ),
                       child: const Text(
-                        "default text style widget",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const Divider(
-                      thickness: 2.0,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                      ),
-                      child: const Text(
                         "Stars widget",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -176,8 +161,11 @@ class _ParentScreenState extends State<ParentScreen> {
                 ),
               ),
               Table(
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                columnWidths: const {0: FractionColumnWidth(0.15), 1: FractionColumnWidth(0.80)},
+                defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                columnWidths: const {
+                  0: FractionColumnWidth(0.20),
+                  1: FractionColumnWidth(0.80),
+                },
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const TableRow(
@@ -255,7 +243,57 @@ class _ParentScreenState extends State<ParentScreen> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                ],
+              ),
+              Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                columnWidths: const {
+                  0: FractionColumnWidth(0.20),
+                  1: FractionColumnWidth(0.22),
+                },
+                children: const [
+                  TableRow(
+                    children: [
+                      TableCell(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                            left: 18.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                child: Text(
+                                  "Default text style:",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  "(Use the 'Remove formatting' button on the toolbar to reset the default text style)",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                  maxLines: 3,
+                                  softWrap: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      DefaultTextStyleWidget(),
+                    ],
+                  ),
                 ],
               ),
             ],

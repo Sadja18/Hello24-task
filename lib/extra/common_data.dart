@@ -321,9 +321,26 @@ const List<Map<String, String>> countryCodeOptions = [
   {"name": "Zimbabwe", "dial_code": "+263", "code": "ZW"},
 ];
 
-const List<String> fontFamilyOptions = [];
+const List<Map<String, String>> fontFamilyOptions = [
+  {"name": "Sans serif", "value": "sans-serif"},
+  {"name": "Serif", "value": "serif"},
+  {"name": "Fixed width", "value": "fxed-width"},
+  {"name": "Wide", "value": "wide"},
+  {"name": "Narrow", "value": "narrow"},
+  {"name": "Comic Sans MS", "value": "comic-sans-ms"},
+  {"name": "Garamond", "value": "garamond"},
+  {"name": "Georgia", "value": "georgia"},
+  {"name": "Tahoma", "value": "tahoma"},
+  {"name": "Trebuchet MS", "value": "trebuchet-ms"},
+  {"name": "Verdana", "value": "verdana"},
+];
 
-const List<String> fontSizeOptions = [];
+const List<Map<String, String>> fontSizeOptions = [
+  {"name": "Small", "value": "sm"},
+  {"name": "Normal", "value": "md"},
+  {"name": "Large", "value": "lg"},
+  {"name": "Huge", "value": "xl"},
+];
 
 const List<Widget> alignmentIcons = [
   Icon(Icons.align_horizontal_left_sharp),
