@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -149,6 +151,7 @@ class _SignatureWrapperWidgetState extends State<SignatureWrapperWidget> {
                                 ScaffoldMessenger.of(c).showSnackBar(SnackBar(content: Text(message)));
                               } else {
                                 updateSignatureNameInStorage(signatureNameController.text);
+                                Navigator.pop(c);
                               }
                             },
                             child: Container(
@@ -185,10 +188,7 @@ class _SignatureWrapperWidgetState extends State<SignatureWrapperWidget> {
   @override
   Widget build(BuildContext context) {
     return signatureExists
-        ? Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text("signature exists"),
-          )
+        ? SignatureExistsWidget(signatureNames: signatureNames)
         : NoSignatureWidget(addSignatureDialog: addSignatureDialog);
   }
 }
@@ -268,6 +268,272 @@ class _NoSignatureWidgetState extends State<NoSignatureWidget> {
                 ),
               ),
             )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SignatureExistsWidget extends StatefulWidget {
+  final List signatureNames;
+  const SignatureExistsWidget({super.key, required this.signatureNames});
+
+  @override
+  State<SignatureExistsWidget> createState() => _SignatureExistsWidgetState();
+}
+
+class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
+  late String selectedSignatureForNewEmail = widget.signatureNames[0]['name'];
+
+  bool checkBoxVal = true;
+
+  List signatureNames = [];
+
+  late String selectedSignatureForReply = widget.signatureNames[0]['name'];
+
+  @override
+  void initState() {
+    if (kDebugMode) {
+      log("$selectedSignatureForNewEmail $selectedSignatureForReply");
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.80,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              child: Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                columnWidths: const <int, TableColumnWidth>{0: FractionColumnWidth(0.30), 1: FractionColumnWidth(0.70)},
+                children: [
+                  TableRow(
+                    children: [
+                      TableCell(child: const Text("list")),
+                      TableCell(child: const Text("editing")),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      TableCell(
+                        child: const Text("button"),
+                      ),
+                      TableCell(
+                        child: const SizedBox(
+                          width: 0,
+                          height: 0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.08,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child: SizedBox(
+                child: Text(
+                  "Signature defaults",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            Table(
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              columnWidths: const <int, TableColumnWidth>{
+                0: FractionColumnWidth(0.40),
+                1: FractionColumnWidth(0.40),
+              },
+              children: [
+                const TableRow(
+                  children: [
+                    TableCell(
+                      child: SizedBox(
+                        child: Text(
+                          "FOR NEW EMAILS USE",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: SizedBox(
+                        child: Text(
+                          "ON REPLY/FORWARD USE",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          child: DropdownButtonFormField(
+                            alignment: Alignment.centerLeft,
+                            isDense: true,
+                            isExpanded: true,
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            value: selectedSignatureForNewEmail,
+                            items: widget.signatureNames
+                                .map(
+                                  (element) => DropdownMenuItem(
+                                    value: element['name'].toString(),
+                                    child: Text(
+                                      element['name'].toString(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (String? value) {
+                              if (kDebugMode) {
+                                log("For new email signature: $value");
+                              }
+                              setState(() {
+                                selectedSignatureForNewEmail = value.toString();
+                              });
+                              saveToLocalStorage('selectedSignatureForNewEmail', selectedSignatureForNewEmail);
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          child: DropdownButtonFormField(
+                            alignment: Alignment.centerLeft,
+                            isDense: true,
+                            isExpanded: true,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                            value: selectedSignatureForReply,
+                            items: widget.signatureNames
+                                .map(
+                                  (element) => DropdownMenuItem(
+                                    value: element['name'].toString(),
+                                    child: Text(
+                                      element['name'].toString(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (String? value) {
+                              if (kDebugMode) {
+                                log("For new email signature: $value");
+                              }
+                              setState(() {
+                                selectedSignatureForReply = value.toString();
+                              });
+                              saveToLocalStorage("selectedSignatureForReply", value.toString());
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Table(
+              columnWidths: const <int, TableColumnWidth>{
+                0: FractionColumnWidth(0.05),
+                1: FractionColumnWidth(0.80),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          child: Checkbox(
+                            activeColor: Colors.blue,
+                            value: checkBoxVal,
+                            onChanged: (value) {
+                              if (kDebugMode) {
+                                log('checkbox val $value');
+                              }
+                              setState(() {
+                                checkBoxVal = !checkBoxVal;
+                              });
+                              saveToLocalStorage("insert_sign_before", checkBoxVal.toString());
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    const TableCell(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          child: Text(
+                              'Insert signature before quoted text in replies and remove the "--" line that precedes it.'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
