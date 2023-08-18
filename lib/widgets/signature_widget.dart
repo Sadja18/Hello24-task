@@ -546,7 +546,31 @@ class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
                   TableRow(
                     children: [
                       TableCell(
-                        child: const Text("button"),
+                        child: InkWell(
+                          onTap: () {},
+                          child: SizedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  child: Icon(
+                                    Icons.add_sharp,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                SizedBox(
+                                  child: const Text(
+                                    "Create new",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                       TableCell(
                         child: const SizedBox(
