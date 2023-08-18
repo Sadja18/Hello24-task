@@ -546,28 +546,39 @@ class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
                   TableRow(
                     children: [
                       TableCell(
-                        child: InkWell(
-                          onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 14.0,
+                          ),
                           child: SizedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  child: Icon(
-                                    Icons.add_sharp,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                                SizedBox(
-                                  child: const Text(
-                                    "Create new",
-                                    style: TextStyle(
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.blue,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero,
+                                  )),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    child: Icon(
+                                      Icons.add_sharp,
                                       color: Colors.blue,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    child: const Text(
+                                      "Create new",
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
