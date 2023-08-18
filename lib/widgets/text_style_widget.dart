@@ -19,6 +19,21 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
   String fontSize = "normal";
   String fontFamily = "sans-serif";
 
+  double fontSizeDouble = 12;
+
+  void reload() {
+    if (kDebugMode) {
+      log("reloading");
+    }
+    instantiate();
+    getFontSizeDouble();
+
+    if (kDebugMode) {
+      log("afer reloading");
+      log(" $fontFamily $fontColor $fontSize $fontSizeDouble ");
+    }
+  }
+
   void instantiate() async {
     var tmpCol = await getKeyFromLocalStorage('fontColor');
     var tmpSize = await getKeyFromLocalStorage('fontSize');
@@ -63,15 +78,23 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
     }
 
     if (tmpSize != null && tmpSize is String) {
-      var foundMap = fontFamilyOptions.firstWhere(
+      var foundMap = fontSizeOptions.firstWhere(
         (element) => element['value'] == tmpSize,
         orElse: () => {},
       );
 
       if (foundMap.containsKey("value")) {
         setState(() {
-          fontFamily = foundMap['name'].toString();
+          fontSize = foundMap['value'].toString();
         });
+
+        var t = getFontSizeDouble();
+        setState(() {
+          fontSizeDouble = t;
+        });
+        if (kDebugMode) {
+          log("Fontsize == $t");
+        }
       }
     }
   }
@@ -93,6 +116,21 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
       default:
         return 12;
     }
+  }
+
+  void clearFormatting() {
+    setState(() {
+      fontFamily = "serif";
+      fontSize = "md";
+      fontSizeDouble = 12;
+      fontColor = Colors.black;
+    });
+
+    saveToLocalStorage("fontFamily", fontFamily);
+    saveToLocalStorage("fontSize", fontSize);
+    saveToLocalStorage("fontColor", fontColor.toString());
+
+    reload();
   }
 
   @override
@@ -135,9 +173,15 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const FontFamilyDropdownWidget(),
-                      const FontSizeWidget(),
-                      const FontColorPicker(),
+                      FontFamilyDropdownWidget(
+                        reload: reload,
+                      ),
+                      FontSizeWidget(
+                        reload: reload,
+                      ),
+                      FontColorPicker(
+                        reload: reload,
+                      ),
                       Container(
                         alignment: Alignment.topLeft,
                         margin: const EdgeInsets.only(
@@ -146,7 +190,12 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
                         width: MediaQuery.of(context).size.width * 0.02,
                         height: MediaQuery.of(context).size.height * 0.05,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (kDebugMode) {
+                              log("clearing formatting");
+                            }
+                            clearFormatting();
+                          },
                           icon: const Icon(
                             Icons.format_clear_sharp,
                           ),
@@ -162,7 +211,7 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
                   "This is what your body text will look like",
                   style: TextStyle(
                     color: fontColor,
-                    fontSize: getFontSizeDouble(),
+                    fontSize: fontSizeDouble,
                     fontFamily: fontFamily,
                   ),
                 ),
@@ -176,7 +225,8 @@ class _DefaultTextStyleWidgetState extends State<DefaultTextStyleWidget> {
 }
 
 class FontFamilyDropdownWidget extends StatefulWidget {
-  const FontFamilyDropdownWidget({super.key});
+  final VoidCallback reload;
+  const FontFamilyDropdownWidget({super.key, required this.reload});
 
   @override
   State<FontFamilyDropdownWidget> createState() => _FontFamilyDropdownWidgetState();
@@ -184,6 +234,25 @@ class FontFamilyDropdownWidget extends StatefulWidget {
 
 class _FontFamilyDropdownWidgetState extends State<FontFamilyDropdownWidget> {
   String _selection = "sans-serif";
+
+  void initialize() async {
+    var fontFamily = await getKeyFromLocalStorage("fontFamily");
+    if (fontFamily != null && fontFamily is String) {
+      var tmpMap = fontFamilyOptions.firstWhere((element) => element['value'] == fontFamily);
+
+      if (tmpMap.containsKey("value")) {
+        setState(() {
+          _selection = tmpMap['value'].toString();
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    initialize();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -237,13 +306,16 @@ class _FontFamilyDropdownWidgetState extends State<FontFamilyDropdownWidget> {
             });
 
             saveToLocalStorage("fontFamily", value.toString());
+
+            widget.reload();
           }),
     );
   }
 }
 
 class FontSizeWidget extends StatefulWidget {
-  const FontSizeWidget({super.key});
+  final VoidCallback reload;
+  const FontSizeWidget({super.key, required this.reload});
 
   @override
   State<FontSizeWidget> createState() => _FontSizeWidgetState();
@@ -251,6 +323,25 @@ class FontSizeWidget extends StatefulWidget {
 
 class _FontSizeWidgetState extends State<FontSizeWidget> {
   String _selection = "md";
+  void initialize() async {
+    var fontSize = await getKeyFromLocalStorage("fontSize");
+    if (fontSize != null && fontSize is String) {
+      var tmpMap = fontSizeOptions.firstWhere((element) => element['value'].toString() == fontSize);
+
+      if (tmpMap.containsKey("value")) {
+        setState(() {
+          _selection = tmpMap['value'].toString();
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    initialize();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -294,6 +385,8 @@ class _FontSizeWidgetState extends State<FontSizeWidget> {
           });
 
           saveToLocalStorage("fontSize", value.toString());
+
+          widget.reload();
         },
       ),
     );
@@ -301,7 +394,8 @@ class _FontSizeWidgetState extends State<FontSizeWidget> {
 }
 
 class FontColorPicker extends StatefulWidget {
-  const FontColorPicker({super.key});
+  final VoidCallback reload;
+  const FontColorPicker({super.key, required this.reload});
 
   @override
   State<FontColorPicker> createState() => _FontColorPickerState();
@@ -310,6 +404,8 @@ class FontColorPicker extends StatefulWidget {
 class _FontColorPickerState extends State<FontColorPicker> {
   Color startColor = Colors.black;
 
+  late BuildContext dcontxt;
+
   void changeColor(Color color) {
     if (kDebugMode) {
       log("selected color ${colorToHex(color)}");
@@ -317,12 +413,17 @@ class _FontColorPickerState extends State<FontColorPicker> {
     setState(() => startColor = color);
 
     saveToLocalStorage("fontColor", colorToHex(color).toString());
+
+    Navigator.pop(dcontxt);
+
+    widget.reload();
   }
 
   void openColorPicker(BuildContext contxt) async {
     await showDialog(
         context: contxt,
         builder: (BuildContext ctx) {
+          dcontxt = ctx;
           return AlertDialog(
             titlePadding: const EdgeInsets.all(0),
             contentPadding: const EdgeInsets.all(0),
@@ -331,6 +432,29 @@ class _FontColorPickerState extends State<FontColorPicker> {
             ),
           );
         });
+  }
+
+  void initialize() async {
+    var fontColor = await getKeyFromLocalStorage("fontColor");
+    if (fontColor != null && fontColor is String) {
+      var hexColor = fontColor.replaceAll("#", "");
+      if (hexColor.length == 6) {
+        hexColor = "FF$hexColor";
+      }
+      if (hexColor.length == 8) {
+        var col = Color(int.parse("0x$hexColor"));
+
+        setState(() {
+          startColor = col;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    initialize();
+    super.initState();
   }
 
   @override
