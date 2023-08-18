@@ -247,7 +247,7 @@ class LanguageRow3 extends StatefulWidget {
 }
 
 class _LanguageRow3State extends State<LanguageRow3> {
-  radioSelection? _primaryRadioButtonValue = radioSelection.rtlOff;
+  RadioSelection? _primaryRadioButtonValue = RadioSelection.rtlOff;
 
   @override
   Widget build(BuildContext context) {
@@ -274,11 +274,11 @@ class _LanguageRow3State extends State<LanguageRow3> {
                 ),
               ),
             ),
-            leading: Radio<radioSelection>(
+            leading: Radio<RadioSelection>(
               activeColor: Colors.blue.shade600,
-              value: radioSelection.rtlOff,
+              value: RadioSelection.rtlOff,
               groupValue: _primaryRadioButtonValue,
-              onChanged: (radioSelection? value) {
+              onChanged: (RadioSelection? value) {
                 setState(() {
                   _primaryRadioButtonValue = value;
                 });
@@ -299,11 +299,11 @@ class _LanguageRow3State extends State<LanguageRow3> {
                 ),
               ),
             ),
-            leading: Radio<radioSelection>(
+            leading: Radio<RadioSelection>(
               activeColor: Colors.blue.shade600,
-              value: radioSelection.rtlOn,
+              value: RadioSelection.rtlOn,
               groupValue: _primaryRadioButtonValue,
-              onChanged: (radioSelection? value) {
+              onChanged: (RadioSelection? value) {
                 setState(() {
                   _primaryRadioButtonValue = value;
                 });

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 Future<void> saveToLocalStorage(String key, String value) async {

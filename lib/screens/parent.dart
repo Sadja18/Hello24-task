@@ -124,7 +124,6 @@ class _ParentScreenState extends State<ParentScreen> {
                   0: FractionColumnWidth(0.20),
                   1: FractionColumnWidth(0.80),
                 },
-                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const TableRow(
                     children: [
