@@ -58,14 +58,16 @@ class _LanguageRow1State extends State<LanguageRow1> {
               "Gmail Display Language:",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: 12,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 1.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 1.0,
+            ),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.14,
+              width: MediaQuery.of(context).size.width * 0.16,
               height: MediaQuery.of(context).size.height * 0.05,
               child: DropdownButtonFormField(
                 // itemHeight: 25,
@@ -75,7 +77,7 @@ class _LanguageRow1State extends State<LanguageRow1> {
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
-                  fontSize: 10,
+                  fontSize: 12,
                 ),
                 decoration: InputDecoration(
                   enabledBorder: const OutlineInputBorder(
@@ -93,7 +95,12 @@ class _LanguageRow1State extends State<LanguageRow1> {
                 items: languageOptions.map((Map<String, String> e) {
                   return DropdownMenuItem(
                     value: e['key'],
-                    child: Text(e['value'].toString()),
+                    child: Text(
+                      e['value'].toString(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
                   );
                 }).toList(),
                 onChanged: (value) {
@@ -126,6 +133,7 @@ class _LanguageRow1State extends State<LanguageRow1> {
                     "Change language settings for other Google products",
                     style: TextStyle(
                       color: Colors.blue,
+                      fontSize: 12,
                       decoration: isHovered ? TextDecoration.underline : TextDecoration.none,
                     ),
                   ),
@@ -172,17 +180,16 @@ class _LanguageRow2State extends State<LanguageRow2> {
           ),
           const SizedBox(
             child: Text(
-              "text",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              "Enable input tools",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
             ),
           ),
           const SizedBox(
             child: Text(
-              " - text - ",
+              " - Use various text input tools to type in the language of your choice - ",
               style: TextStyle(
                 fontWeight: FontWeight.normal,
+                fontSize: 12,
               ),
             ),
           ),
@@ -198,6 +205,7 @@ class _LanguageRow2State extends State<LanguageRow2> {
                     "Edit tools",
                     style: TextStyle(
                       color: Colors.blue.shade500,
+                      fontSize: 12,
                       decoration: isHovered ? TextDecoration.underline : TextDecoration.none,
                     ),
                   ),
@@ -220,6 +228,7 @@ class _LanguageRow2State extends State<LanguageRow2> {
                 "Learn more",
                 style: TextStyle(
                   color: Colors.blue.shade400,
+                  fontSize: 12,
                 ),
               ),
             ),
@@ -261,7 +270,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
                 "Right to Left editing support off",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: 12,
                 ),
               ),
             ),
@@ -286,7 +295,7 @@ class _LanguageRow3State extends State<LanguageRow3> {
                 "Right to Left editing support on",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: 12,
                 ),
               ),
             ),

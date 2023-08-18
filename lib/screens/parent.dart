@@ -43,6 +43,7 @@ class _ParentScreenState extends State<ParentScreen> {
                 name,
                 style: TextStyle(
                   color: names.indexOf(name) == 0 ? colorOfButtonOnHover : colorOfButtonNormal,
+                  fontSize: 10,
                 ),
               ),
             ),
@@ -90,7 +91,7 @@ class _ParentScreenState extends State<ParentScreen> {
                   'Settings',
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -123,22 +124,6 @@ class _ParentScreenState extends State<ParentScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                      ),
-                      child: const Text(
-                        "phone numebers widget",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const Divider(
-                      thickness: 2.0,
-                    ),
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(
@@ -208,7 +193,7 @@ class _ParentScreenState extends State<ParentScreen> {
                               "Language:",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: Colors.black,
                               ),
                             ),
@@ -245,7 +230,7 @@ class _ParentScreenState extends State<ParentScreen> {
                               "Phone numbers:",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: Colors.black,
                               ),
                             ),

@@ -27,13 +27,14 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
               "Default country code:",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 12,
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 1.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.14,
+              width: MediaQuery.of(context).size.width * 0.16,
               height: MediaQuery.of(context).size.height * 0.05,
               child: DropdownButtonFormField(
                 // itemHeight: 25,
@@ -43,7 +44,7 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
-                  fontSize: 10,
+                  fontSize: 12,
                 ),
                 decoration: InputDecoration(
                   enabledBorder: const OutlineInputBorder(
@@ -65,6 +66,9 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
                       e['name'].toString().trim(),
                       softWrap: true,
                       maxLines: 3,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
                   );
                 }).toList(),
