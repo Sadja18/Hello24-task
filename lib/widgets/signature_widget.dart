@@ -317,27 +317,76 @@ class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 columnWidths: const <int, TableColumnWidth>{
                   0: FractionColumnWidth(0.30),
-                  1: FractionColumnWidth(0.70),
+                  1: FractionColumnWidth(0.55),
                 },
                 children: [
                   TableRow(
                     children: [
                       TableCell(
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           height: MediaQuery.of(context).size.height * 0.30,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(
                               color: Colors.black,
                             ),
                           ),
-                          child: Text("list"),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: widget.signatureNames.map((e) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.lightBlue.shade100,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        child: Text(
+                                          e["name"].toString(),
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        child: IconButton(
+                                          padding: const EdgeInsets.all(0),
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.edit_sharp,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        child: IconButton(
+                                          padding: const EdgeInsets.all(0),
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.delete_outlined,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
                         ),
                       ),
                       TableCell(
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           height: MediaQuery.of(context).size.height * 0.30,
                           decoration: BoxDecoration(
                             color: Colors.white,
