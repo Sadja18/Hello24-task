@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:hmail_settings_general_clone/widgets/language_widget.dart';
 import 'package:hmail_settings_general_clone/widgets/phone_number_widget.dart';
@@ -114,50 +116,6 @@ class _ParentScreenState extends State<ParentScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: generateTabs(),
                   ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                margin: const EdgeInsets.only(
-                  top: 12.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                      ),
-                      child: const Text(
-                        "Stars widget",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const Divider(
-                      thickness: 2.0,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                      ),
-                      child: const Text(
-                        "signature widget",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const Divider(
-                      thickness: 2.0,
-                    ),
-                  ],
                 ),
               ),
               Table(
@@ -294,6 +252,109 @@ class _ParentScreenState extends State<ParentScreen> {
                       DefaultTextStyleWidget(),
                     ],
                   ),
+                ],
+              ),
+              Table(
+                columnWidths: {0: FractionColumnWidth(1)},
+                children: [
+                  TableRow(children: [
+                    TableCell(
+                      child: Divider(
+                        color: Colors.black,
+                        thickness: 1.0,
+                      ),
+                    ),
+                  ])
+                ],
+              ),
+              Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                columnWidths: const {
+                  0: FractionColumnWidth(0.20),
+                  1: FractionColumnWidth(0.40),
+                },
+                children: [
+                  TableRow(
+                    children: [
+                      const TableCell(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                            left: 18.0,
+                          ),
+                          child: SizedBox(
+                            child: Text(
+                              "Stars:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Placeholder(),
+                    ],
+                  ),
+                ],
+              ),
+              Table(
+                columnWidths: {0: FractionColumnWidth(1)},
+                children: [
+                  TableRow(children: [
+                    TableCell(
+                      child: Divider(
+                        color: Colors.black,
+                        thickness: 1.0,
+                      ),
+                    ),
+                  ])
+                ],
+              ),
+              Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                columnWidths: const {
+                  0: FractionColumnWidth(0.20),
+                  1: FractionColumnWidth(0.40),
+                },
+                children: [
+                  TableRow(
+                    children: [
+                      const TableCell(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                            left: 18.0,
+                          ),
+                          child: SizedBox(
+                            child: Text(
+                              "Signature:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Placeholder(),
+                    ],
+                  ),
+                ],
+              ),
+              Table(
+                columnWidths: {0: FractionColumnWidth(1)},
+                children: [
+                  TableRow(children: [
+                    TableCell(
+                      child: Divider(
+                        color: Colors.black,
+                        thickness: 1.0,
+                      ),
+                    ),
+                  ])
                 ],
               ),
             ],
