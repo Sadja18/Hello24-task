@@ -306,19 +306,192 @@ class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
       padding: const EdgeInsets.only(top: 8.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.80,
+        // height: MediaQuery.of(context).size.height*0.40,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
+              // height: MediaQuery.of(context).size.height * 0.40,
               child: Table(
                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                columnWidths: const <int, TableColumnWidth>{0: FractionColumnWidth(0.30), 1: FractionColumnWidth(0.70)},
+                columnWidths: const <int, TableColumnWidth>{
+                  0: FractionColumnWidth(0.30),
+                  1: FractionColumnWidth(0.70),
+                },
                 children: [
                   TableRow(
                     children: [
-                      TableCell(child: const Text("list")),
-                      TableCell(child: const Text("editing")),
+                      TableCell(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.30,
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                          ),
+                          child: Text("list"),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.30,
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.25,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    top: BorderSide(
+                                      color: Colors.black,
+                                      width: 1,
+                                    ),
+                                    left: BorderSide.none,
+                                    bottom: BorderSide.none,
+                                    right: BorderSide.none,
+                                  ),
+                                ),
+                                height: MediaQuery.of(context).size.height * 0.04,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_size_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_bold_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_italic_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_underline_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_color_text_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.link_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.image_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_align_left_sharp,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      padding: const EdgeInsets.all(0),
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.format_list_numbered_sharp,
+                                      ),
+                                    ),
+                                    // IconButton(onPressed: (){}, icon: Icons)
+                                    PopupMenuButton(
+                                      padding: const EdgeInsets.all(0),
+                                      itemBuilder: (BuildContext ctx) {
+                                        return [
+                                          PopupMenuItem(
+                                            padding: const EdgeInsets.all(0),
+                                            onTap: () {},
+                                            child: Icon(
+                                              Icons.format_clear_sharp,
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            padding: const EdgeInsets.all(0),
+                                            onTap: () {},
+                                            child: Icon(
+                                              Icons.format_quote_sharp,
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            padding: const EdgeInsets.all(0),
+                                            onTap: () {},
+                                            child: Icon(
+                                              Icons.format_indent_increase_sharp,
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            padding: const EdgeInsets.all(0),
+                                            onTap: () {},
+                                            child: Icon(
+                                              Icons.format_indent_decrease_sharp,
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            padding: const EdgeInsets.all(0),
+                                            onTap: () {},
+                                            child: Icon(
+                                              Icons.format_list_numbered_sharp,
+                                            ),
+                                          ),
+                                        ];
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   TableRow(
