@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hmail_settings_general_clone/widgets/language_widget.dart';
 import 'package:hmail_settings_general_clone/widgets/phone_number_widget.dart';
+import 'package:hmail_settings_general_clone/widgets/signature_widget.dart';
 import 'package:hmail_settings_general_clone/widgets/text_style_widget.dart';
 
 class ParentScreen extends StatefulWidget {
@@ -320,25 +321,54 @@ class _ParentScreenState extends State<ParentScreen> {
                 children: [
                   TableRow(
                     children: [
-                      const TableCell(
+                      TableCell(
                         child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             top: 8.0,
                             left: 18.0,
                           ),
-                          child: SizedBox(
-                            child: Text(
-                              "Signature:",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                color: Colors.black,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                child: Text(
+                                  "Signature:",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(
+                                child: Text(
+                                  "(appended at the end of all outgoing messages)",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                child: InkWell(
+                                  onTap: () {},
+                                  child: const Text(
+                                    "Learn more",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),
-                      Placeholder(),
+                      SignatureWrapperWidget(),
                     ],
                   ),
                 ],
