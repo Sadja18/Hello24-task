@@ -322,6 +322,7 @@ class FontSizeWidget extends StatefulWidget {
 }
 
 class _FontSizeWidgetState extends State<FontSizeWidget> {
+  // ignore: unused_field
   String _selection = "md";
 
   double getFontSize(String name) {

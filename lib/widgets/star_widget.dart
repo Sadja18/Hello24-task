@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hmail_settings_general_clone/extra/common_data.dart';
 
@@ -51,10 +48,10 @@ class _StarsWrapperState extends State<StarsWrapper> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               Padding(
                 // padding: const EdgeInsets.all(8.0),
                 padding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -86,8 +83,8 @@ class _StarsWrapperState extends State<StarsWrapper> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.0),
                 child: SizedBox(
                   child: Text(
                     "Presets:	",
@@ -103,7 +100,7 @@ class _StarsWrapperState extends State<StarsWrapper> {
                 child: SizedBox(
                   child: TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "1 star",
                       style: TextStyle(color: Colors.blue, fontSize: 12, fontWeight: FontWeight.normal),
                     ),
@@ -115,7 +112,7 @@ class _StarsWrapperState extends State<StarsWrapper> {
                 child: SizedBox(
                   child: TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "4 stars",
                       style: TextStyle(color: Colors.blue, fontSize: 12, fontWeight: FontWeight.normal),
                     ),
@@ -127,7 +124,7 @@ class _StarsWrapperState extends State<StarsWrapper> {
                 child: SizedBox(
                   child: TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "all stars",
                       style: TextStyle(color: Colors.blue, fontSize: 12, fontWeight: FontWeight.normal),
                     ),
@@ -140,8 +137,8 @@ class _StarsWrapperState extends State<StarsWrapper> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 4.0,
                     ),
                     child: Text(
@@ -180,8 +177,8 @@ class _StarsWrapperState extends State<StarsWrapper> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 4.0,
                     ),
                     child: Text(
