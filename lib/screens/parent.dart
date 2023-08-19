@@ -85,7 +85,7 @@ class _ParentScreenState extends State<ParentScreen> {
         height: MediaQuery.of(context).size.height * 0.70,
         width: MediaQuery.of(context).size.width * 0.50,
         child: tryCode
-            ? MyApp()
+            ? MyApp1()
             // DragAndDropLists(
             //     listPadding: const EdgeInsets.all(8.0),
             //     children: lists,
@@ -476,6 +476,98 @@ class _MyAppState extends State<MyApp> {
                             feedback: const Text(""),
                           ))
                       .toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyApp1 extends StatefulWidget {
+  @override
+  _MyApp1State createState() => _MyApp1State();
+}
+
+class _MyApp1State extends State<MyApp1> {
+  Map<String, Widget> widgets = {
+    "ac_unit": Icon(Icons.ac_unit),
+    "alarm": Icon(Icons.alarm),
+    "car": Icon(Icons.drive_eta),
+    "face": Icon(Icons.face),
+    "flower": Icon(Icons.mobile_friendly),
+    "food": Icon(Icons.local_pizza),
+    "home": Icon(Icons.home),
+    "lightbulb": Icon(Icons.lightbulb),
+    "map": Icon(Icons.map),
+    "phone": Icon(Icons.phone),
+    "star": Icon(Icons.star),
+  };
+
+  List<String> inUseWidgets = ["ac_unit"];
+  List<String> notInUseWidgets = [
+    "alarm",
+    "car",
+    "face",
+    "flower",
+    "food",
+    "home",
+    "lightbulb",
+    "map",
+    "phone",
+    "star"
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: [
+// In use section
+            Row(
+              children: inUseWidgets
+                  .map(
+                    (widgetName) => Draggable(
+                      data: widgetName,
+                      child: widgets[widgetName]!,
+                      onDragEnd: (details) {
+// Rebuild the not in use section and add the widget at the
+// beginning of the list.
+                        setState(() {
+                          notInUseWidgets.insert(0, widgetName);
+                          inUseWidgets.remove(widgetName);
+                        });
+                      },
+                      feedback: const Text(
+                        "",
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+// Not in use section
+            Row(
+              children: notInUseWidgets
+                  .map(
+                    (widgetName) => Draggable(
+                      data: widgetName,
+                      child: widgets[widgetName]!,
+                      onDragEnd: (details) {
+// Rebuild the in use section and add the widget at the
+// position defined by its own position value.
+                        setState(() {
+                          int position = notInUseWidgets.indexOf(widgetName);
+                          inUseWidgets.insert(position, widgetName);
+                          notInUseWidgets.remove(widgetName);
+                        });
+                      },
+                      feedback: const Text(
+                        "",
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
           ],
         ),
