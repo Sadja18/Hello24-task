@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 const List<Map<String, String>> languageOptions = [
   {"key": "af", "value": "Afrikaans"},
@@ -349,3 +350,132 @@ const List<Widget> alignmentIcons = [
 ];
 
 enum RadioSelection { rtlOn, rtlOff }
+
+List<Widget> starIcons = [
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.yellow,
+    size: 20,
+  ),
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.amber,
+    size: 20,
+  ),
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.orange,
+    size: 20,
+  ),
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.purple,
+    size: 20,
+  ),
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.blue,
+    size: 20,
+  ),
+  const Icon(
+    Icons.star_sharp,
+    color: Colors.green,
+    size: 20,
+  ),
+  // exclamation mark
+  const Icon(
+    CupertinoIcons.exclamationmark_square_fill,
+    color: Colors.red,
+    size: 20,
+  ),
+  // shift
+  const Icon(
+    CupertinoIcons.chevron_right_square_fill,
+    color: Colors.orange,
+    size: 20,
+  ),
+  // yellow exclamation
+  const Icon(
+    CupertinoIcons.exclamationmark_square_fill,
+    color: Colors.yellow,
+    size: 20,
+  ),
+  const Icon(
+    Icons.check_box_sharp,
+    color: Colors.blue,
+    size: 20,
+  ),
+  const Icon(
+    Icons.info_sharp,
+    color: Colors.blue,
+    size: 20,
+  ),
+  const Icon(
+    CupertinoIcons.question_square_fill,
+    color: Colors.purple,
+    size: 20,
+  ),
+];
+
+Map<String, Widget> widgetMap = {
+  'Yellow Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.yellow,
+    size: 24,
+  ),
+  'Amber Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.amber,
+    size: 24,
+  ),
+  'Orange Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.orange,
+    size: 24,
+  ),
+  'Purple Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.purple,
+    size: 24,
+  ),
+  'Blue Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.blue,
+    size: 24,
+  ),
+  'Green Star': const Icon(
+    Icons.star_sharp,
+    color: Colors.green,
+    size: 24,
+  ),
+  'Red Exclamation': const Icon(
+    CupertinoIcons.exclamationmark_square_fill,
+    color: Colors.red,
+    size: 24,
+  ),
+  'Orange Shift': const Icon(
+    CupertinoIcons.chevron_right_square_fill,
+    color: Colors.orange,
+    size: 24,
+  ),
+  'Yellow Exclamation': const Icon(
+    CupertinoIcons.exclamationmark_square_fill,
+    color: Colors.yellow,
+    size: 24,
+  ),
+  'Blue Checkbox': const Icon(
+    Icons.check_box_sharp,
+    color: Colors.blue,
+    size: 24,
+  ),
+  'Blue Info': const Icon(
+    Icons.info_sharp,
+    color: Colors.blue,
+    size: 24,
+  ),
+  'Purple Question': const Icon(
+    CupertinoIcons.question_square_fill,
+    color: Colors.purple,
+    size: 24,
+  ),
+};

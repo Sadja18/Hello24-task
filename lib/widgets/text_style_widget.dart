@@ -323,6 +323,26 @@ class FontSizeWidget extends StatefulWidget {
 
 class _FontSizeWidgetState extends State<FontSizeWidget> {
   String _selection = "md";
+
+  double getFontSize(String name) {
+    switch (name) {
+      case "sm":
+        return 10;
+
+      case 'md':
+        return 12;
+
+      case 'lg':
+        return 14;
+
+      case 'xl':
+        return 16;
+      // break;
+      default:
+        return 12;
+    }
+  }
+
   void initialize() async {
     var fontSize = await getKeyFromLocalStorage("fontSize");
     if (fontSize != null && fontSize is String) {
@@ -345,51 +365,35 @@ class _FontSizeWidgetState extends State<FontSizeWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.08,
-      height: MediaQuery.of(context).size.height * 0.05,
-      child: DropdownButtonFormField(
-        alignment: Alignment.topLeft,
-        decoration: const InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-          ),
-          fillColor: Colors.white,
-          suffixIcon: Icon(
-            Icons.format_size_sharp,
-          ),
-        ),
-        value: _selection,
-        items: fontSizeOptions
-            .map(
-              (Map<String, String> e) => DropdownMenuItem(
-                value: e['value'].toString(),
-                child: Text(
-                  e['name'].toString(),
-                  softWrap: true,
-                  style: const TextStyle(
-                    fontSize: 12,
-                  ),
+        width: MediaQuery.of(context).size.width * 0.02,
+        height: MediaQuery.of(context).size.height * 0.05,
+        child: PopupMenuButton<String>(
+          icon: const Icon(Icons.format_size_sharp),
+          itemBuilder: (context) => fontSizeOptions.map((e) {
+            return PopupMenuItem(
+              value: e['value'],
+              child: Text(
+                e['name']!,
+                softWrap: true,
+                style: TextStyle(
+                  fontSize: getFontSize(e['value'].toString()),
                 ),
               ),
-            )
-            .toList(),
-        onChanged: (String? value) {
-          if (kDebugMode) {
-            log("selected $value");
-          }
-          setState(() {
-            _selection = value.toString();
-          });
+            );
+          }).toList(),
+          onSelected: (String value) {
+            if (kDebugMode) {
+              log("selected $value");
+            }
+            setState(() {
+              _selection = value;
+            });
 
-          saveToLocalStorage("fontSize", value.toString());
+            saveToLocalStorage("fontSize", value);
 
-          widget.reload();
-        },
-      ),
-    );
+            widget.reload();
+          },
+        ));
   }
 }
 

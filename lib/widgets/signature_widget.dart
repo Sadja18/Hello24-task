@@ -102,76 +102,73 @@ class _SignatureWrapperWidgetState extends State<SignatureWrapperWidget> {
               Container(
                 alignment: Alignment.centerRight,
                 width: MediaQuery.of(ctx).size.width * 0.30,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: SizedBox(
-                          width: MediaQuery.of(ctx).size.width * 0.05,
-                          height: MediaQuery.of(ctx).size.height * 0.05,
-                          child: InkWell(
-                            onTap: () {
-                              if (kDebugMode) {
-                                log("close dialog");
-                              }
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        width: MediaQuery.of(ctx).size.width * 0.05,
+                        height: MediaQuery.of(ctx).size.height * 0.05,
+                        child: InkWell(
+                          onTap: () {
+                            if (kDebugMode) {
+                              log("close dialog");
+                            }
+                            Navigator.pop(c);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: Colors.white,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        width: MediaQuery.of(ctx).size.width * 0.05,
+                        height: MediaQuery.of(ctx).size.height * 0.05,
+                        child: InkWell(
+                          onTap: () {
+                            if (kDebugMode) {
+                              log("ontap create ${signatureNameController.text}");
+                            }
+                            if (signatureNameController.text.length <= 1) {
+                              var message = "Please provide a discernable name for signature";
+                              ScaffoldMessenger.of(c).showSnackBar(SnackBar(content: Text(message)));
+                            } else {
+                              updateSignatureNameInStorage(signatureNameController.text);
                               Navigator.pop(c);
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                // color: Colors.white,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: const Text(
-                                "Cancel",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                            }
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(24.0),
+                            ),
+                            child: const Text(
+                              "Create",
+                              style: TextStyle(
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: SizedBox(
-                          width: MediaQuery.of(ctx).size.width * 0.05,
-                          height: MediaQuery.of(ctx).size.height * 0.05,
-                          child: InkWell(
-                            onTap: () {
-                              if (kDebugMode) {
-                                log("ontap create ${signatureNameController.text}");
-                              }
-                              if (signatureNameController.text.length <= 1) {
-                                var message = "Please provide a discernable name for signature";
-                                ScaffoldMessenger.of(c).showSnackBar(SnackBar(content: Text(message)));
-                              } else {
-                                updateSignatureNameInStorage(signatureNameController.text);
-                                Navigator.pop(c);
-                              }
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              child: const Text(
-                                "Create",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               )
             ],
@@ -204,12 +201,14 @@ class NoSignatureWidget extends StatefulWidget {
 class _NoSignatureWidgetState extends State<NoSignatureWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 8.0,
-      ),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.20,
+    return Container(
+      alignment: Alignment.topLeft,
+      width: MediaQuery.of(context).size.width * 0.20,
+      height: MediaQuery.of(context).size.height * 0.15,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 8.0,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,52 +334,49 @@ class _SignatureExistsWidgetState extends State<SignatureExistsWidget> {
                               color: Colors.black,
                             ),
                           ),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: widget.signatureNames.map((e) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.lightBlue.shade100,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          e["name"].toString(),
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: widget.signatureNames.map((e) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.lightBlue.shade100,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      child: Text(
+                                        e["name"].toString(),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
                                         ),
                                       ),
-                                      SizedBox(
-                                        child: IconButton(
-                                          padding: const EdgeInsets.all(0),
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.edit_sharp,
-                                          ),
+                                    ),
+                                    SizedBox(
+                                      child: IconButton(
+                                        padding: const EdgeInsets.all(0),
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.edit_sharp,
                                         ),
                                       ),
-                                      SizedBox(
-                                        child: IconButton(
-                                          padding: const EdgeInsets.all(0),
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.delete_outlined,
-                                          ),
+                                    ),
+                                    SizedBox(
+                                      child: IconButton(
+                                        padding: const EdgeInsets.all(0),
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.delete_outlined,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
                           ),
                         ),
                       ),
